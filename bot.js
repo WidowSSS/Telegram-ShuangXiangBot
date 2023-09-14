@@ -2,14 +2,34 @@ require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
 const sqlite3 = require('sqlite3').verbose();
 
-const { TELEGRAM_BOT_TOKEN, ADMIN_ID, COMMAND_BAN, COMMAND_UNBAN,COMMAND_UNBANTEXT } = process.env;
+const { TELEGRAM_BOT_TOKEN, ADMIN_ID, COMMAND_BAN, COMMAND_UNBAN, COMMAND_UNBANTEXT, WELCOME_MESSGAE } = process.env;
 const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: true, request: { family: 4 } });
 const db = new sqlite3.Database('ShuangXiang.db');
 db.run("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY, telegram_id INTEGER UNIQUE, telegram_name TEXT, is_blacklisted INTEGER)");
 
+if (WELCOME_MESSGAE == null || WELCOME_MESSGAE == "") {
+    const message = `请检查env环境配置文件.配置欢迎消息`;
+    bot.sendMessage(chatId, message, { parse_mode: 'HTML' });
+    return;
+}
+
+if (COMMAND_UNBANTEXT == null || COMMAND_UNBANTEXT == "") {
+    const message = `请检查env环境配置文件.配置封禁消息`;
+    bot.sendMessage(chatId, message, { parse_mode: 'HTML' });
+    return;
+}
+
 bot.on('message', (msg) => {
     const { id: chatId, type: chatType, title: groupName } = msg.chat;
     const { id: telegramId, username: telegramName } = msg.from;
+
+    if ('/start'.includes(msg.text)) {
+        if(chatId != ADMIN_ID){
+            const message = `${WELCOME_MESSGAE}`;
+            bot.sendMessage(chatId, message, { parse_mode: 'HTML' });
+        }
+        return;
+    }
 
     if (['/ID', '/id'].includes(msg.text)) {
         const message = (chatType === 'group' || chatType === 'supergroup') ?
