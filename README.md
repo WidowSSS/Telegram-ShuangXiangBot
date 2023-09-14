@@ -15,6 +15,7 @@
 - 🔐 安全可靠: 数据安全，让您无后顾之忧
 
 ## 使用教程
+![image]https://github.com/WidowSSS/Telegram-ShuangXiangBot/blob/main/2023914.gif
 ### Windows
 1. 准备工作
 
@@ -75,5 +76,5 @@ WELCOME_MESSGAE=已接入对话               #欢迎语
 
 #使用本软件即表示接受此声明。如果不接受或不理解本声明，请立即停止使用本软件。
 
-
+>定制开发-电报@Widow_SSS
 
