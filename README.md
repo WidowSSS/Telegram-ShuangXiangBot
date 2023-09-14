@@ -15,7 +15,7 @@
 - 🔐 安全可靠: 数据安全，让您无后顾之忧
 
 ## 使用教程
-![image]https://github.com/WidowSSS/Telegram-ShuangXiangBot/blob/main/2023914.gif
+
 ### Windows
 1. 准备工作
 
@@ -61,6 +61,8 @@ ADMIN_ID=            #管理员ID
 COMMAND_BAN=/ban                        #封禁指令
 
 COMMAND_UNBAN=/unban                    #解封指令
+
+COMMAND_SEND=/send                      #群发指令
 
 COMMAND_UNBANTEXT=禁止聊天               #封禁消息
 
